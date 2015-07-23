@@ -1,4 +1,4 @@
-FROM tutum/centos:centos6
+FROM library/centos:centos6
 
 MAINTAINER pica9
 
@@ -26,12 +26,16 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php55 \
     php-devel \
     php-soap \
     php-pecl-http1 \
+    php-intl \
     zlib-devel \
     curl \
     libcurl-devel \
     git \
     java-1.7.0-openjdk \
-    npm
+    npm \
+    mod_ssl
+
+RUN mkdir -p /etc/httpd/ssl
 
 RUN npm install -g bower
 
