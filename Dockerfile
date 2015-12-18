@@ -13,12 +13,11 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php55 \
     php \
     php-common \
     php-pecl-apc \
+    php-bcmath \
     php-cli \
     php-pear \
     php-pdo \
     php-pgsql \
-    php-pecl-memcache \
-    php-pecl-memcached \
     php-gd \
     php-mbstring \
     php-mcrypt \
