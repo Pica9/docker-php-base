@@ -12,7 +12,6 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 \
     gcc \
     php \
     php-common \
-    php-pecl-apc \
     php-bcmath \
     php-cli \
     php-pear \
@@ -24,7 +23,6 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 \
     php-xml \
     php-devel \
     php-soap \
-    php-pecl-http1 \
     php-intl \
     zlib-devel \
     curl \
