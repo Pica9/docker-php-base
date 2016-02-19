@@ -32,7 +32,8 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php55 \
     git \
     java-1.7.0-openjdk \
     npm \
-    mod_ssl
+    mod_ssl \
+    tar
 
 RUN mkdir -p /etc/httpd/ssl
 
