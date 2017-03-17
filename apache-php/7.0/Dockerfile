@@ -33,11 +33,22 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 \
     java-1.7.0-openjdk \
     npm \
     mod_ssl \
-    tar
+    tar \
+    libssh2 \
+    libssh2-devel \
+    make \
+    wget \
+    unzip
 
 RUN mkdir -p /etc/httpd/ssl
 
 RUN npm install -g bower
+
+#install ssh2
+RUN wget https://codeload.github.com/Sean-Der/pecl-networking-ssh2/zip/php7
+RUN unzip php7
+RUN cd pecl-networking-ssh2-php7 && phpize && ./configure && make && make install
+RUN echo "extension=ssh2.so" > /etc/php.d/20-ssh2.ini
 
 #install composer
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/bin/composer
