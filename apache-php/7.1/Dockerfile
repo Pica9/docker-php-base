@@ -43,9 +43,9 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php71 \
 RUN mkdir -p /etc/httpd/ssl
 
 #install ssh2
-RUN wget https://codeload.github.com/Sean-Der/pecl-networking-ssh2/zip/php7
-RUN unzip php7
-RUN cd pecl-networking-ssh2-php7 && phpize && ./configure && make && make install
+RUN wget http://pecl.php.net/get/ssh2-1.1.1.tgz
+RUN tar -zxf ssh2-1.1.1.tgz
+RUN cd ssh2-1.1.1 && phpize && ./configure && make && make install
 RUN echo "extension=ssh2.so" > /etc/php.d/20-ssh2.ini
 
 RUN npm install -g bower
