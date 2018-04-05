@@ -5,6 +5,7 @@ MAINTAINER pica9
 # add additional repos
 RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
 
 # install apache, php5
 RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 \
@@ -31,7 +32,7 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 \
     libcurl-devel \
     git \
     java-1.7.0-openjdk \
-    npm \
+    nodejs \
     mod_ssl \
     tar \
     libssh2 \
