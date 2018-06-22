@@ -39,7 +39,9 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php71 \
     libssh2-devel \
     make \
     wget \
-    unzip
+    unzip \
+    python-pip \
+    awscli
 
 RUN mkdir -p /etc/httpd/ssl
 
