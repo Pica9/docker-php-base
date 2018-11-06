@@ -5,6 +5,7 @@ MAINTAINER pica9
 # add additional repos
 RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+run rpm -Uvh http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm
 RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
 
 # install apache, php5
@@ -50,6 +51,8 @@ RUN wget https://codeload.github.com/Sean-Der/pecl-networking-ssh2/zip/php7
 RUN unzip php7
 RUN cd pecl-networking-ssh2-php7 && phpize && ./configure && make && make install
 RUN echo "extension=ssh2.so" > /etc/php.d/20-ssh2.ini
+
+RUN echo "memory_limit = 2048M" >> /etc/php.ini
 
 #install composer
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/bin/composer
