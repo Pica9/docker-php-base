@@ -52,7 +52,7 @@ RUN unzip php7
 RUN cd pecl-networking-ssh2-php7 && phpize && ./configure && make && make install
 RUN echo "extension=ssh2.so" > /etc/php.d/20-ssh2.ini
 
-RUN echo "memory_limit = 2048M" >> /etc/php.ini
+RUN echo "memory_limit = 4096M" >> /etc/php.ini
 
 #install composer
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/bin/composer
