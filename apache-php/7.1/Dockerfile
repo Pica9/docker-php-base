@@ -46,13 +46,20 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php71 \
 
 RUN mkdir -p /etc/httpd/ssl
 
+RUN wget https://www.libssh2.org/download/libssh2-1.8.0.tar.gz
+RUN tar -xpzf libssh2-1.8.0.tar.gz
+RUN cd libssh2-1.8.0 && ./configure --prefix=/usr &&  make && make install
+
 #install ssh2
 RUN wget http://pecl.php.net/get/ssh2-1.1.1.tgz
 RUN tar -zxf ssh2-1.1.1.tgz
 RUN cd ssh2-1.1.1 && phpize && ./configure && make && make install
 RUN echo "extension=ssh2.so" > /etc/php.d/20-ssh2.ini
 
+RUN ldconfig
+
 RUN npm install -g bower
 
 #install composer
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/bin/composer
+
