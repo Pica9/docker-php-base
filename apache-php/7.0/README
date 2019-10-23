@@ -1,0 +1,10 @@
+
+Because the build now requires a private github repo a passwordless ssh key is
+required for the build.  It can be done like so:
+
+docker build --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/id_auto)" \
+  -t pica9/php-base:7.0.4 .
+
+where pica9/php-base:7.0.4 is the docker tag and ~/.ssh/id_auto is the
+aforementioned ssh key.  See also the Dockerfile in this dir.
+
