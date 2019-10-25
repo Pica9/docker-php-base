@@ -13,6 +13,7 @@ RUN chmod 600 /root/.ssh/id_rsa
 RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 RUN git clone git@github.com:Pica9/composer.git
 RUN rm -rf /root/.ssh/
+RUN cd composer && composer require hirak/prestissimo
 RUN cd composer && composer install
 
 
