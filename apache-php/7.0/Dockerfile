@@ -49,7 +49,7 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 \
     php-devel \
     php-soap \
     php-intl \
-    php-redis \
+    php-pecl-redis-3.1.6-1.el6.remi.7.0.x86_64 \
     php-zip \
     zlib-devel \
     curl \
