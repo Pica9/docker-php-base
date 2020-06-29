@@ -77,3 +77,7 @@ RUN echo "extension=ssh2.so" > /etc/php.d/20-ssh2.ini
 
 RUN echo "memory_limit = 4096M" >> /etc/php.ini
 
+RUN yum install -y python-pip jq
+RUN pip install awscli==1.16.314
+RUN pip install jmespath==0.9.5
+RUN perl -pi -e '$. == 1 && ($_ .= "import urllib3\nurllib3.disable_warnings()\n")' /usr/bin/aws
