@@ -42,7 +42,14 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php71 \
     wget \
     unzip \
     python-pip \
-    awscli
+    awscli \
+    perl-Test-Simple \
+    perl-JSON \
+    perl-CPAN
+
+RUN cpan YAML::XS
+
+RUN pip install awscli==1.16.314
 
 RUN mkdir -p /etc/httpd/ssl
 
