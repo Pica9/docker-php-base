@@ -63,7 +63,12 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 \
     libssh2-devel \
     make \
     wget \
-    unzip
+    unzip \
+    perl-Test-Simple \
+    perl-JSON \
+    perl-CPAN
+
+RUN cpan YAML::XS
 
 RUN mkdir -p /etc/httpd/ssl
 
