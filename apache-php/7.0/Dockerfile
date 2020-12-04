@@ -1,10 +1,13 @@
 FROM library/centos:centos6
 
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN rpm -Uvh http://archives.fedoraproject.org/pub/archive/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 RUN rpm -Uvh http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm
+
+RUN sed -i 's/#baseurl=http:\/\/mirror\.centos\.org\/centos\/\$releasever/baseurl=http:\/\/vault\.centos\.org\/6\.10/g' /etc/yum.repos.d/CentOS-Base.repo
 RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 php php-xml php-zip git
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/bin/composer
+RUN /usr/bin/composer self-update 1.10.18
 
 ARG SSH_PRIVATE_KEY
 RUN mkdir /root/.ssh/
@@ -26,12 +29,13 @@ RUN ln -s /composer/bin/composer /usr/bin/composer
 MAINTAINER pica9
 
 # add additional repos
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN rpm -Uvh http://archives.fedoraproject.org/pub/archive/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 run rpm -Uvh http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm
 RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
 
 # install apache, php5
+RUN sed -i 's/#baseurl=http:\/\/mirror\.centos\.org\/centos\/\$releasever/baseurl=http:\/\/vault\.centos\.org\/6\.10/g' /etc/yum.repos.d/CentOS-Base.repo
 RUN yum install -y --enablerepo=remi --enablerepo=remi-php70 \
     httpd \
     gcc \
