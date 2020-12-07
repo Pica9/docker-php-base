@@ -3,12 +3,15 @@ FROM library/centos:centos6
 MAINTAINER pica9
 
 # add additional repos
-RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN rpm -Uvh http://archives.fedoraproject.org/pub/archive/epel/6/x86_64/epel-release-6-8.noarch.rpm
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 RUN curl -sL https://rpm.nodesource.com/setup_8.x | bash -
 RUN rpm -Uvh http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm
 
 # install apache, php5
+RUN sed -i \
+    's/#baseurl=http:\/\/mirror\.centos\.org\/centos\/\$releasever/baseurl=http:\/\/vault\.centos\.org\/6\.10/g' \
+    /etc/yum.repos.d/CentOS-Base.repo
 RUN yum install -y --enablerepo=remi --enablerepo=remi-php71 \
     httpd \
     gcc \
