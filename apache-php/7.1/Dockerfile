@@ -79,3 +79,11 @@ RUN npm install -g bower
 RUN curl -sS https://getcomposer.org/installer | php -- --version=1.4.1 \
     && mv composer.phar /usr/bin/composer
 
+RUN cd ~ \
+  && curl -O https://mirrors.kernel.org/gnu/bash/bash-5.1.tar.gz \
+  && tar zxvf bash-5.1.tar.gz \
+  && cd bash-5.1 \
+  && ./configure --prefix=/opt \
+  && make install \
+  && rm ~/bash-5.1.tar.gz
+
