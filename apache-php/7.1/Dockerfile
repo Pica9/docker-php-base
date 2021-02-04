@@ -48,7 +48,12 @@ RUN yum install -y --enablerepo=remi --enablerepo=remi-php71 \
     awscli \
     perl-Test-Simple \
     perl-JSON \
-    perl-CPAN
+    perl-CPAN \
+    nginx \
+    php71-php-fpm \
+    php71-php-pgsql
+
+RUN rm /etc/nginx/conf.d/default.conf;
 
 RUN cpan YAML::XS
 
